@@ -1,3 +1,9 @@
+# Import required libraries
+from bs4 import BeautifulSoup
+import requests
+import telegram_send
+import time
+
 noSlotKeyword = "Aucun"
 
 # function that returns the availability of a valid auchan location
