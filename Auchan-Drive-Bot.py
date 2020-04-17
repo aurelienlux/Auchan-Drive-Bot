@@ -52,8 +52,6 @@ location2Url = {
 # settign to None so that it will definitely send messages on start-up
 storedState = {loc: None for loc in location2Url.keys()}
 
-storedState["Munsbach"] = False
-
 print("initial state:", storedState)
 
 iteration = 0
