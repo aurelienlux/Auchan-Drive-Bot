@@ -17,7 +17,6 @@ def getAvailability(location):
         # get innertext of paragraph as string
         status = str(slotInfo.text)
         
-        status = "des samedi bla bla bla"
         # check for noSlotKeyword in status
         if noSlotKeyword in status:
             available = False
