@@ -27,7 +27,7 @@ def getAvailability(location):
         if noSlotKeyword in status:
             available = False
         else:
-            available = status[4:]
+            available = status[6:]
     except:
         available = None
         telegram_send.send(messages=["An error has occurred getting the availability of {0}".format(location)])
@@ -41,7 +41,7 @@ def getMessageContent(location, available):
     elif available == None:
         return None
     elif isinstance(available, str):
-        return "Slot available in {0} at '{1}'".format(location, available)
+        return "Slot available in {0}\n\nNext slot: {1}".format(location, available)
 
 # ADD NEW LOCATIONS HERE
 location2Url = {
