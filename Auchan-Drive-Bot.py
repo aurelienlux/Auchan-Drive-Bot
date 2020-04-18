@@ -41,7 +41,35 @@ def getMessageContent(location, available):
     elif available == None:
         return None
     elif isinstance(available, str):
-        return "Slot available in {0}\n\nNext slot: {1}".format(location, available)
+        translate = [dateTranslate[word] if word in dateTranslate.keys() else word for word in available.split(" ")]
+        translate.insert(1,',')
+        translate.insert(2, ' ')
+        translate.insert(4, ' ')
+        translate.insert(6, ' ')
+        translate.insert(7, 'at ')
+        return "Slots available in {0}\n\nNext slot: {1}".format(location, "".join(translate))
+
+dateTranslate = {
+    "lundi": "Monday",
+    "mardi": "Tuesday",
+    "mercredi": "Wednesday",
+    "jeudi": "Thursday",
+    "vendredi": "Friday",
+    "samedi": "Saturday",
+    "dimanche": "Sunday",
+    "janvier": "January",
+    "février": "February",
+    "mars": "March",
+    "avril": "April",
+    "mai": "May",
+    "juin": "June",
+    "juillet": "July",
+    "aout": "August",
+    "septembre": "September",
+    "octobre": "October",
+    "novembre": "November",
+    "décembre": "December"
+}
 
 # ADD NEW LOCATIONS HERE
 location2Url = {
