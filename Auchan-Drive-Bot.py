@@ -44,7 +44,7 @@ def getMessageContent(location, available):
         translate = [dateTranslate[word] if word in dateTranslate.keys() else word for word in available.split(" ")]
         translate[0] += ","
         translate.insert(3, 'at')
-        return "Slots available in {0}\n\nNext slot: {1}".format(location, " ".join(translate))
+        return "*Slots available in {0}*\n\nNext slot: {1}".format(location, " ".join(translate))
 
 dateTranslate = {
     "lundi": "Monday",
@@ -102,7 +102,7 @@ while True:
     for loc in location2Url.keys():
         message = messages[loc]
         if messages[loc] is not None:
-            telegram_send.send(messages=[message])
+            telegram_send.send(messages=[message], parse_mode="markdown")
 
     storedState = currentState
     iteration += 1
