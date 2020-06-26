@@ -16,18 +16,18 @@ def getAvailability(location):
         page = requests.get(url, verify=False)
         # get parsed content
         parsed = BeautifulSoup(page.text, "html.parser")
-        # get infos-retrait div
-        info = parsed.find("div", {"class": ["infos-retrait"]})
-        # get details paragraph
-        slotInfo = info.find("p", {"class": ["details"]})
+        # get next slot
+        slotInfo = parsed.find("div", {"class": ["info-drive_next-slot"]})
         # get innertext of paragraph as string
-        status = str(slotInfo.text)
+        fullStatus = str(slotInfo.text)
+        # process innertext
+        status = fullStatus[28:]
         
         # check for noSlotKeyword in status
         if noSlotKeyword in status:
             available = False
         else:
-            available = status[6:]
+            available = status
     except:
         available = None
         telegram_send.send(messages=["An error has occurred getting the availability of {0}".format(location)])
@@ -43,7 +43,6 @@ def getMessageContent(location, available):
     elif isinstance(available, str):
         translate = [dateTranslate[word] if word in dateTranslate.keys() else word for word in available.split(" ")]
         translate[0] += ","
-        translate.insert(3, 'at')
         return "*Slots available in {0}*\n\nNext slot: {1}".format(location, " ".join(translate))
 
 dateTranslate = {
@@ -65,7 +64,8 @@ dateTranslate = {
     "septembre": "September",
     "octobre": "October",
     "novembre": "November",
-    "décembre": "December"
+    "décembre": "December",
+    "à": "at"
 }
 
 # ADD NEW LOCATIONS HERE
