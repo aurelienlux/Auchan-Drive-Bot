@@ -60,7 +60,7 @@ dateTranslate = {
     "mai": "May",
     "juin": "June",
     "juillet": "July",
-    "aout": "August",
+    "août": "August",
     "septembre": "September",
     "octobre": "October",
     "novembre": "November",
